@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 class LetsGoButton extends StatelessWidget {
-  final bool center;
-
-  const LetsGoButton({Key? key, required this.center}) : super(key: key);
+  const LetsGoButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget button = SizedBox(
-      width: 136,
-      height: 46,
+    return InkWell(
+      onTap: () => Navigator.pushNamed(context, '/login'),
       child: Container(
         width: 136,
         height: 46,
@@ -46,7 +43,5 @@ class LetsGoButton extends StatelessWidget {
         ),
       ),
     );
-
-    return center ? Center(child: button) : button;
   }
 }

@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:trail_buddies/pages/landing_page.dart';
+import './pages/landing.dart';
+import './pages/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +12,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const LandingPage();
+    return MaterialApp(
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const LandingPage(),
+        '/login': (context) => const LoginPage(),
+      },
+    );
   }
 }

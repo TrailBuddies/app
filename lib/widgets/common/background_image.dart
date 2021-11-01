@@ -9,8 +9,6 @@ class BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 360,
-      height: 640,
       decoration: const BoxDecoration(
         image: DecorationImage(
           image: AssetImage('assets/images/background_image.png'),
