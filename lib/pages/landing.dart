@@ -11,10 +11,6 @@ class LandingPage extends StatelessWidget {
       body: BackgroundImage(
         children: [
           WelcomeGroup(),
-          Hero(
-            tag: 'lets_go',
-            child: Text("test"),
-          ),
         ],
       ),
     );

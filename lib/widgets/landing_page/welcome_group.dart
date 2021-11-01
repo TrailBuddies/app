@@ -21,10 +21,7 @@ class WelcomeGroup extends StatelessWidget {
             ),
             Positioned(
               top: 150,
-              child: Hero(
-                child: LetsGoButton(),
-                tag: 'lets_go',
-              ),
+              child: LetsGoButton(),
             ),
           ],
         ),

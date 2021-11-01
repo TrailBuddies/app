@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trail_buddies/widgets/landing_page/lets_go_button.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -6,12 +7,9 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Hero(
-        tag: 'lets_go',
-        child: Container(
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(232, 73, 23, 1),
-          ),
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color.fromRGBO(0, 0, 0, 1),
         ),
       ),
     );
