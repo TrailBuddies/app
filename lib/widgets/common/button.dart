@@ -1,38 +1,53 @@
 import 'package:flutter/material.dart';
 
-class LetsGoButton extends StatelessWidget {
-  const LetsGoButton({Key? key}) : super(key: key);
+class Button extends StatelessWidget {
+  final String text;
+  final void Function() onTap;
+  final Color textColour;
+  final Color backgroundColour;
+  final double width;
+  final double height;
+
+  const Button({
+    Key? key,
+    required this.text,
+    required this.onTap,
+    this.textColour = Colors.white,
+    this.backgroundColour = Colors.grey,
+    this.width = 136,
+    this.height = 46,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/login'),
+      onTap: onTap,
       child: Container(
         width: 136,
         height: 46,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(50),
             topRight: Radius.circular(50),
             bottomLeft: Radius.circular(50),
             bottomRight: Radius.circular(50),
           ),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(0, 0, 0, 0.25),
               offset: Offset(0, 4),
               blurRadius: 4,
             )
           ],
-          color: Color.fromRGBO(232, 73, 23, 1),
+          color: backgroundColour,
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            'Let’s Go!',
+            text,
             textAlign: TextAlign.center,
             textDirection: TextDirection.ltr,
             style: TextStyle(
-              color: Color.fromRGBO(255, 255, 255, 1),
+              color: textColour,
               fontFamily: 'Ruda',
               fontSize: 24,
               letterSpacing: 0,
