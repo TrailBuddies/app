@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextInput extends StatefulWidget {
+  final TextEditingController controller;
   final TextStyle style;
   final String hintText;
   final bool obscureText;
@@ -9,6 +10,7 @@ class TextInput extends StatefulWidget {
     Key? key,
     this.obscureText = false,
     this.style = const TextStyle(fontFamily: 'Montserrat', fontSize: 20.0),
+    required this.controller,
     required this.hintText,
   }) : super(key: key);
 

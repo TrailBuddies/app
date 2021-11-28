@@ -10,6 +10,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final loginController = TextEditingController();
+
+  final String error = "";
+
+  @override
+  void dispose() {
+    loginController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,9 +32,9 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const TextInput(hintText: "Email"),
+              TextInput(hintText: "Email", controller: loginController),
               const SizedBox(height: 16),
-              const TextInput(hintText: "Password"),
+              TextInput(hintText: "Password", controller: loginController),
               const SizedBox(height: 30),
               Button(
                 text: 'Login',
