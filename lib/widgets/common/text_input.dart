@@ -22,6 +22,7 @@ class _TextInputState extends State<TextInput> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       obscureText: widget.obscureText,
       style: widget.style,
       decoration: InputDecoration(

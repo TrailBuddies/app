@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
 
@@ -10,13 +13,57 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final loginController = TextEditingController();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
 
-  final String error = "";
+  String error = "";
+
+  void login() async {
+    print('login');
+
+    print(emailController.text);
+    print(passController.text);
+
+    if (emailController.text.isEmpty || passController.text.isEmpty) {
+      print('a field is empty');
+      return setState(() {
+        error = "Please enter your email and password";
+      });
+    }
+
+    setState(() {
+      error = "";
+    });
+
+    final response = await post(
+      Uri.parse('http://10.0.2.2:3000/api/v1/users/login'),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'user': {
+          'email': emailController.text,
+          'password': passController.text,
+        }
+      }),
+    );
+
+    var json = jsonDecode(response.body) as Map<String, dynamic>;
+
+    if (response.statusCode != 200) {
+      return setState(() {
+        error = json['error'];
+      });
+    } else {
+      final prefs = await SharedPreferences.getInstance();
+      prefs.setString('token', json['auth']['token']);
+      prefs.setString('username', json['username']);
+    }
+  }
 
   @override
   void dispose() {
-    loginController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 
@@ -32,16 +79,30 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextInput(hintText: "Email", controller: loginController),
+              TextInput(hintText: "Email", controller: emailController),
               const SizedBox(height: 16),
-              TextInput(hintText: "Password", controller: loginController),
+              TextInput(
+                hintText: "Password",
+                obscureText: true,
+                controller: passController,
+              ),
               const SizedBox(height: 30),
               Button(
                 text: 'Login',
                 backgroundColour: Colors.green.shade400,
                 textColour: Colors.white,
-                onTap: () => {},
-              )
+                onTap: () => {login()},
+              ),
+              if (error.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                Text(
+                  error,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold),
+                ),
+              ]
             ],
           ),
         ),
