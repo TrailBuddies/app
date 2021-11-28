@@ -18,14 +18,8 @@ class _LoginPageState extends State<LoginPage> {
 
   String error = "";
 
-  void login() async {
-    print('login');
-
-    print(emailController.text);
-    print(passController.text);
-
+  void login(BuildContext context) async {
     if (emailController.text.isEmpty || passController.text.isEmpty) {
-      print('a field is empty');
       return setState(() {
         error = "Please enter your email and password";
       });
@@ -58,6 +52,8 @@ class _LoginPageState extends State<LoginPage> {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('token', json['auth']['token']);
       prefs.setString('username', json['username']);
+
+      Navigator.pushNamed(context, '/home');
     }
   }
 
@@ -76,35 +72,31 @@ class _LoginPageState extends State<LoginPage> {
           color: Color.fromRGBO(232, 73, 23, 1),
         ),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextInput(hintText: "Email", controller: emailController),
-              const SizedBox(height: 16),
-              TextInput(
-                hintText: "Password",
-                obscureText: true,
-                controller: passController,
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            TextInput(hintText: "Email", controller: emailController),
+            const SizedBox(height: 16),
+            TextInput(
+              hintText: "Password",
+              obscureText: true,
+              controller: passController,
+            ),
+            const SizedBox(height: 30),
+            Button(
+              text: 'Login',
+              backgroundColour: Colors.green.shade400,
+              textColour: Colors.white,
+              onTap: () => {login(context)},
+            ),
+            const SizedBox(height: 16),
+            Text(
+              error,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
               ),
-              const SizedBox(height: 30),
-              Button(
-                text: 'Login',
-                backgroundColour: Colors.green.shade400,
-                textColour: Colors.white,
-                onTap: () => {login()},
-              ),
-              if (error.isNotEmpty) ...[
-                const SizedBox(height: 16),
-                Text(
-                  error,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-              ]
-            ],
-          ),
+            ),
+          ]),
         ),
       ),
     );
