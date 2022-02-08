@@ -60,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void dispose() {
     emailController.dispose();
+    passController.dispose();
     super.dispose();
   }
 
