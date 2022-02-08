@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
       await prefs.setString('token', json['auth']['token']);
       await prefs.setString('username', json['user']['username']);
 
-      Navigator.pushNamed(context, '/home');
+      Navigator.pushReplacementNamed(context, '/home');
     }
   }
 
