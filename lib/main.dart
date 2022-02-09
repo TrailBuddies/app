@@ -24,7 +24,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
-        '/': (context) => const CheckLogin(),
+        '/': (context) => ChangeNotifierProvider<CurrentUser>(
+              create: (_) => CurrentUser(),
+              child: const CheckLogin(),
+            ),
         '/login': (context) => const LoginPage(),
         '/home': (context) => const HomePage(),
       },
@@ -106,7 +109,8 @@ class _CheckLogin extends State<CheckLogin> {
           );
           FlutterError.presentError(FlutterErrorDetails(
             exception: snapshot.error ?? {},
-            context: ErrorDescription('Error while validating token in _CheckLogin'),
+            context:
+                ErrorDescription('Error while validating token in _CheckLogin'),
           ));
           return const LoginPage();
         } else {
