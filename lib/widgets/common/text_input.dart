@@ -27,15 +27,15 @@ class _TextInputState extends State<TextInput> {
       style: widget.style,
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
-          borderSide: const BorderSide(color: Colors.black, width: 2.0),
-          borderRadius: BorderRadius.circular(32.0),
+          borderSide: BorderSide(color: Colors.orangeAccent.shade700, width: 1.0),
+          borderRadius: BorderRadius.circular(20.0),
         ),
         filled: true,
         fillColor: Colors.white,
-        contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+        // contentPadding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
         hintText: widget.hintText,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(32.0),
+          borderRadius: BorderRadius.circular(20.0),
         ),
       ),
     );
