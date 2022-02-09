@@ -27,7 +27,8 @@ class LandingPage extends StatelessWidget {
                     child: Button(
                       text: 'Lets Go!',
                       backgroundColour: const Color.fromRGBO(232, 73, 23, 1),
-                      onTap: () => Navigator.pushReplacementNamed(context, '/login'),
+                      onTap: () =>
+                          Navigator.pushReplacementNamed(context, '/login'),
                     ),
                   ),
                 ],

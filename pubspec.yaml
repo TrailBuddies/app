@@ -18,7 +18,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -52,7 +52,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -60,17 +59,15 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/images/background_image.png
     - assets/images/logo.png
+    - assets/images/logo.jpg
+    - assets/images/logo_large.png
+    - assets/images/logo_large.jpg
+    - assets/images/logo_sketch.png
+    - assets/images/logo_sketch.jpg
+    - assets/images/background.png
 
-flutter_icons:
-  image_path_android: "assets/images/logo.png"
-  image_path_ios: "assets/images/logo.png"
-  android: true
-  ios: true
-  remove_alpha_ios: true
-
-  # An image asset can refer to one or more resolution-specific "variants", see
+    # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
   # For details regarding adding assets from package dependencies, see
@@ -95,3 +92,10 @@ flutter_icons:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_icons:
+  image_path_android: 'assets/images/logo.jpg'
+  image_path_ios: 'assets/images/logo.jpg'
+  android: true
+  ios: true
+  remove_alpha_ios: true

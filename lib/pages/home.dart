@@ -26,7 +26,7 @@ class _HomePage extends State<HomePage> {
               background: Container(
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/images/background_image.png'),
+                    image: AssetImage('assets/images/background.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
