@@ -1,6 +1,6 @@
 import 'package:trail_buddies/user.dart';
 
-abstract class HikeEvent {
+class HikeEvent {
   late String id;
   late String title;
   late String description;
