@@ -78,12 +78,30 @@ class _CheckLogin extends State<CheckLogin> {
           newVerified: json['verified'],
           newAdmin: json['admin'],
         );
+        setState(() {
+          isLoggedIn = true;
+        });
       }
     }
   }
 
+  Future<bool> checkIfLoggedIn() async {
+    await getToken();
+    await verifyToken();
+    return isLoggedIn;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return isLoggedIn ? const HomePage() : const LandingPage();
+    return FutureBuilder(
+      future: checkIfLoggedIn(),
+      builder: (context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.hasData) {
+          return snapshot.data == true ? const HomePage() : const LoginPage();
+        } else {
+          return const CircularProgressIndicator();
+        }
+      },
+    );
   }
 }
