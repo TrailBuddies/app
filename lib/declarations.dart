@@ -1,1 +1,3 @@
-const baseUrl = 'http://10.0.2.2:3000';
+abstract class Declarations {
+  static const baseUrl = 'http://10.0.2.2:3000';
+}
