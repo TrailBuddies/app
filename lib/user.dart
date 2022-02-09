@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import './declarations.dart';
 
 class User {
   late String id;
@@ -26,13 +27,13 @@ class User {
 
   static Future<User?> fetch(String identifier) async {
     final response = await get(
-      Uri.parse(''),
+      Uri.parse('$baseUrl/api/v1/users/$identifier'),
       headers: {
         'Content-Type': 'application/json',
       },
     );
     final json = jsonDecode(response.body);
-    
+
     if (response.statusCode != 200) {
       throw json['error'];
     } else {
