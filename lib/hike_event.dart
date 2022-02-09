@@ -1,3 +1,5 @@
+import 'package:trail_buddies/user.dart';
+
 abstract class HikeEvent {
   late String id;
   late String title;
@@ -29,5 +31,9 @@ abstract class HikeEvent {
     this.difficulty = int.parse(difficulty);
     this.createdAt = DateTime.parse(createdAt);
     this.updatedAt = DateTime.parse(updatedAt);
+  }
+
+  Future<User?> getUser() async {
+    return await User.fetch(userId);
   }
 }
