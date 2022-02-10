@@ -105,6 +105,10 @@ flutter:
         - asset: assets/fonts/Baloo_Bhaijaan_2/Variable_Weight.ttf
           weight: 300
 
+    - family: Poiret One
+      fonts:
+        - asset: assets/fonts/Poiret_One/Regular.ttf
+
 flutter_icons:
   image_path_android: 'assets/images/logo.png'
   image_path_ios: 'assets/images/logo.png'
