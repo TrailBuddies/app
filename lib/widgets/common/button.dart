@@ -20,41 +20,37 @@ class Button extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: 136,
-        height: 46,
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(50),
-            topRight: Radius.circular(50),
-            bottomLeft: Radius.circular(50),
-            bottomRight: Radius.circular(50),
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Color.fromRGBO(0, 0, 0, 0.25),
-              offset: Offset(0, 4),
-              blurRadius: 4,
-            )
-          ],
-          color: backgroundColour,
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (states) => (states.contains(MaterialState.pressed)
+              ? backgroundColour.withOpacity(0.5)
+              : backgroundColour),
         ),
-        child: Center(
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            textDirection: TextDirection.ltr,
-            style: TextStyle(
-              color: textColour,
-              fontFamily: 'Ruda',
-              fontSize: 24,
-              letterSpacing: 0,
-              fontWeight: FontWeight.bold,
-              height: 1,
-            ),
+        foregroundColor: MaterialStateProperty.resolveWith<Color?>(
+          (states) => (states.contains(MaterialState.pressed)
+              ? textColour.withOpacity(0.5)
+              : textColour),
+        ),
+        alignment: Alignment.center,
+        shape: MaterialStateProperty.all<OutlinedBorder>(
+          const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
           ),
+        ),
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr,
+        style: TextStyle(
+          color: textColour,
+          fontFamily: 'Ruda',
+          fontSize: 24,
+          letterSpacing: 0,
+          fontWeight: FontWeight.bold,
+          height: 1,
         ),
       ),
     );
