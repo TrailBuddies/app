@@ -46,7 +46,7 @@ class Button extends StatelessWidget {
         textDirection: TextDirection.ltr,
         style: TextStyle(
           color: textColour,
-          fontFamily: 'Ruda',
+          fontFamily: 'Poiret One',
           fontSize: 24,
           letterSpacing: 0,
           fontWeight: FontWeight.bold,
