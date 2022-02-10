@@ -88,6 +88,14 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Comfortaa
+      fonts:
+        - asset: assets/fonts/Comfortaa/static/Regular.ttf
+        - asset: assets/fonts/Comfortaa/static/Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Comfortaa/static/Light.ttf
+          weight: 300
 
 flutter_icons:
   image_path_android: 'assets/images/logo.png'
