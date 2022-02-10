@@ -41,12 +41,37 @@ class HikeEvent {
     return await User.fetch(userId);
   }
 
+  static Future<HikeEvent?> fetch(String id) async {
+    final response = await get(
+      Uri.parse('$baseUrl/api/v1/hike_events/$id'),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    final json = jsonDecode(response.body);
+
+    if (json['error']) {
+      throw Exception(
+          'Failed to fetch hike event $id. Response: ${json.toString()}');
+    } else {
+      return HikeEvent(
+        id: json['id'],
+        title: json['title'],
+        description: json['description'],
+        duration: json['duration'],
+        lat: json['lat'],
+        lng: json['lng'],
+        difficulty: json['difficulty'],
+        createdAt: json['created_at'],
+        updatedAt: json['updated_at'],
+        userId: json['user_id'],
+      );
+    }
+  }
+
   static Future<List<HikeEvent>> all() async {
     final response = await get(
       Uri.parse('$baseUrl/api/v1/hike_events'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: {'Content-Type': 'application/json'},
     );
 
     final json = jsonDecode(response.body);
