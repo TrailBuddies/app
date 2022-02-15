@@ -40,10 +40,23 @@ class _LoginPageState extends State<LoginPage> {
           'password': passController.text,
         }
       }),
-    );
+    ).catchError((e) {
+      setState(() {
+        error = 'Unexpected error. Please report this incident';
+      });
+      FlutterError.presentError(
+        FlutterErrorDetails(
+          exception: e,
+          context: ErrorDescription(
+            'post() request .catchError callback. Trying to log in with ${emailController.text} and ${passController.text}',
+          ),
+        ),
+      );
+    });
 
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
+    if (error.isNotEmpty) return;
     if (response.statusCode != 200) {
       return setState(() {
         error = json['error'];
