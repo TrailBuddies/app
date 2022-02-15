@@ -82,16 +82,16 @@ class HikeEvent {
     } else {
       return (json as List<dynamic>)
           .map((e) => HikeEvent(
-                id: e['id'] as String,
-                title: e['title'] as String,
-                description: e['description'] as String,
-                duration: e['duration'] as String,
-                lat: e['lat'] as String,
-                lng: e['lng'] as String,
-                difficulty: e['difficulty'] as String,
-                createdAt: e['created_at'] as String,
-                updatedAt: e['updated_at'] as String,
-                userId: e['user_id'] as String,
+                id: e['id'],
+                title: e['title'],
+                description: e['description'],
+                duration: e['duration'],
+                lat: e['lat'],
+                lng: e['lng'],
+                difficulty: e['difficulty'],
+                createdAt: e['created_at'],
+                updatedAt: e['updated_at'],
+                userId: e['user_id'],
               ))
           .toList();
     }
