@@ -23,7 +23,7 @@ class _HomePage extends State<HomePage> {
     });
   }
 
-  Future<void> refreshHikes() async {
+  Future<void> fetchHikes() async {
     setState(() {
       loading = true;
       error = null;
@@ -58,7 +58,7 @@ class _HomePage extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        onRefresh: refreshHikes,
+        onRefresh: fetchHikes,
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
