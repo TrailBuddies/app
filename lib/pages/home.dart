@@ -62,13 +62,28 @@ class _HomePage extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              expandedHeight: 150.0,
+              expandedHeight: 280.0,
+              backgroundColor: Colors.orange.shade900,
               flexibleSpace: FlexibleSpaceBar(
                 title: Container(
-                  width: double.infinity,
                   height: 50,
-                  margin: const EdgeInsets.only(left: 10, right: 10),
-                  child: const Text('Trail Buddies'),
+                  margin:
+                      const EdgeInsets.only(left: 10, right: 10, bottom: 110),
+                  alignment: Alignment.topCenter,
+                  child: const Text(
+                    'Trail Buddies',
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            blurRadius: 2,
+                            color: Colors.grey,
+                            offset: Offset(0, 3),
+                          ),
+                        ]),
+                  ),
                 ),
                 centerTitle: true,
                 background: Container(
@@ -86,9 +101,7 @@ class _HomePage extends State<HomePage> {
                 [
                   const SizedBox(height: 10),
                   if (error != null) Center(child: Text(error!)),
-                  if (loading)
-                    ...List.filled(5, null)
-                        .map((e) => const HikeCardSkeleton()),
+                  if (loading) const HikeCardSkeleton(),
                   if (hikes.isEmpty && error == null && !loading)
                     const Center(child: Text('No hikes found')),
                   if (hikes.isNotEmpty)
