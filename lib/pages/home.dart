@@ -107,13 +107,14 @@ class _HomePage extends State<HomePage> {
                   if (hikes.isNotEmpty)
                     ...hikes.map(
                       (hike) => HikeCard(
-                          title: hike.title,
-                          description: hike.description,
-                          duration: hike.duration,
-                          lat: hike.lat,
-                          lng: hike.lng,
-                          difficulty: hike.difficulty,
-                          onTap: () => {}),
+                        title: hike.title,
+                        description: hike.description,
+                        duration: hike.duration,
+                        lat: hike.lat,
+                        lng: hike.lng,
+                        difficulty: hike.difficulty,
+                        onTap: () => {},
+                      ),
                     ),
                 ],
               ),
