@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trail_buddies/hike_event.dart';
+import 'package:trail_buddies/widgets/common/hike_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePage extends State<HomePage> {
   List<HikeEvent> hikes = [];
+  bool hasFetchedHikes = false;
   bool loading = false;
   String? error;
 
@@ -28,9 +30,15 @@ class _HomePage extends State<HomePage> {
     });
     await Future.delayed(const Duration(milliseconds: 1000));
     HikeEvent.all().then((hikes) {
-      this.hikes.addAll(hikes);
+      if (hasFetchedHikes) {
+        hikes.removeWhere(
+            (newHike) => this.hikes.any((hike) => hike.id == newHike.id));
+      }
+
       setState(() {
+        this.hikes.addAll(hikes);
         loading = false;
+        hasFetchedHikes = true;
       });
     }).catchError((e) {
       setState(() {
@@ -78,10 +86,22 @@ class _HomePage extends State<HomePage> {
                 [
                   const SizedBox(height: 10),
                   if (error != null) Center(child: Text(error!)),
-                  if (loading) const Center(child: Text('Loading...')),
+                  if (loading)
+                    ...List.filled(5, null)
+                        .map((e) => const HikeCardSkeleton()),
                   if (hikes.isEmpty && error == null && !loading)
                     const Center(child: Text('No hikes found')),
-                  if (hikes.isNotEmpty) ...hikes.map((hike) => Card()),
+                  if (hikes.isNotEmpty)
+                    ...hikes.map(
+                      (hike) => HikeCard(
+                          title: hike.title,
+                          description: hike.description,
+                          duration: hike.duration,
+                          lat: hike.lat,
+                          lng: hike.lng,
+                          difficulty: hike.difficulty,
+                          onTap: () => {}),
+                    ),
                 ],
               ),
             )
