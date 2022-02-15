@@ -50,35 +50,41 @@ class HikeCardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SkeletonLoader(
-        builder: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                child: Column(
-                  children: <Widget>[
-                    Container(
-                      width: double.infinity,
-                      height: 10,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      width: double.infinity,
-                      height: 12,
-                      color: Colors.white,
-                    ),
-                  ],
+      child: Card(
+        child: SkeletonLoader(
+          builder: Row(
+            children: [
+              Container(
+                height: 60,
+                width: 60,
+                margin: const EdgeInsets.only(
+                    top: 10, left: 10, bottom: 10, right: 5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
                 ),
+              ),
+              Column(
+                children: [
+                  Container(
+                      height: 20,
+                      width: 130,
+                      margin: const EdgeInsets.only(top: 10, bottom: 10),
+                      color: Colors.white),
+                  Container(
+                    height: 15,
+                    width: 200,
+                    margin: const EdgeInsets.only(top: 10, bottom: 10),
+                  )
+                ],
               ),
             ],
           ),
+          items: 1,
+          period: const Duration(seconds: 1),
+          highlightColor: Colors.grey.shade400,
+          direction: SkeletonDirection.ltr,
         ),
-        items: 10,
-        period: const Duration(seconds: 1),
-        highlightColor: Colors.grey.shade300,
-        direction: SkeletonDirection.ltr,
       ),
     );
   }
