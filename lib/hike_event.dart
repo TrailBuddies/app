@@ -80,7 +80,7 @@ class HikeEvent {
       throw Exception(json['error'] ??
           'Failed to fetch /api/v1/hike_events. Failed with status ${response.statusCode} and response: ${json.toString()}');
     } else {
-      return (json as List<Map<String, String>>)
+      return (json as List<dynamic>)
           .map((e) => HikeEvent(
                 id: e['id'] as String,
                 title: e['title'] as String,
