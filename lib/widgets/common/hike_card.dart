@@ -8,6 +8,7 @@ class HikeCard extends StatefulWidget {
   final double lat;
   final double lng;
   final int difficulty;
+  final String? imageUrl;
   final void Function() onTap;
 
   const HikeCard({
@@ -18,6 +19,7 @@ class HikeCard extends StatefulWidget {
     required this.lat,
     required this.lng,
     required this.difficulty,
+    required this.imageUrl,
     required this.onTap,
   }) : super(key: key);
 

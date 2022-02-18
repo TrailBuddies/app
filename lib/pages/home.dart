@@ -114,6 +114,7 @@ class _HomePage extends State<HomePage> {
                         lat: hike.lat,
                         lng: hike.lng,
                         difficulty: hike.difficulty,
+                        imageUrl: hike.imageUrl,
                         onTap: () => {},
                       ),
                     ),
