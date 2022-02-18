@@ -14,6 +14,7 @@ class HikeEvent {
   late int difficulty;
   late DateTime createdAt;
   late DateTime updatedAt;
+  late String? imageUrl;
   late String userId;
 
   HikeEvent({
@@ -26,6 +27,7 @@ class HikeEvent {
     required String difficulty,
     required String createdAt,
     required String updatedAt,
+    required this.imageUrl,
     required this.userId,
   }) {
     this.duration =
@@ -63,6 +65,7 @@ class HikeEvent {
         difficulty: json['difficulty'].toString(),
         createdAt: json['created_at'],
         updatedAt: json['updated_at'],
+        imageUrl: json['image_url'],
         userId: json['user_id'],
       );
     }
@@ -91,6 +94,7 @@ class HikeEvent {
                 difficulty: e['difficulty'].toString(),
                 createdAt: e['created_at'],
                 updatedAt: e['updated_at'],
+                imageUrl: e['image_url'],
                 userId: e['user_id'],
               ))
           .toList();
