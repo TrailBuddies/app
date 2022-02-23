@@ -54,36 +54,45 @@ class HikeCardSkeleton extends StatelessWidget {
     return Center(
       child: Card(
         child: SkeletonLoader(
-          builder: Row(
+          builder: Column(
             children: [
-              Container(
-                height: 60,
-                width: 60,
-                margin: const EdgeInsets.only(
-                    top: 10, left: 10, bottom: 10, right: 5),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
+              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                Container(
+                  width: 90,
+                  height: 90,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-              ),
-              Column(
-                children: [
-                  Container(
-                      height: 20,
-                      width: 130,
-                      margin: const EdgeInsets.only(top: 10, bottom: 10),
-                      color: Colors.white),
-                  Container(
-                    height: 15,
-                    width: 200,
-                    margin: const EdgeInsets.only(top: 10, bottom: 10),
-                  )
-                ],
-              ),
+                SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: 100,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Container(
+                      width: 100,
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ],
+                ),
+              ]),
             ],
           ),
           items: 1,
-          period: const Duration(seconds: 1),
+          period: const Duration(seconds: 2),
           highlightColor: Colors.grey.shade400,
           direction: SkeletonDirection.ltr,
         ),
