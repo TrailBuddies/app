@@ -32,14 +32,23 @@ class _HikeCardState extends State<HikeCard> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              title: Text(widget.title),
-              subtitle: Text(widget.description),
-            ),
-          ],
+        child: InkWell(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              widget.imageUrl == null
+                  ? const Image(
+                      image: AssetImage('assets/images/placeholder.png'),
+                    )
+                  : Image(
+                      image: NetworkImage(widget.imageUrl as String),
+                    ),
+              ListTile(
+                title: Text(widget.title),
+                subtitle: Text(widget.description),
+              ),
+            ],
+          ),
         ),
       ),
     );
