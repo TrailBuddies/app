@@ -64,40 +64,13 @@ class HikeCardSkeleton extends StatelessWidget {
       child: Card(
         child: SkeletonLoader(
           builder: Column(
-            children: [
-              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                Container(
-                  width: 90,
-                  height: 90,
-                  decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      width: 100,
-                      height: 10,
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
+            mainAxisSize: MainAxisSize.min,
+            children: const [
+              Image(image: AssetImage('assets/images/placeholder.png')),
+              ListTile(
+                title: Text("Loading..."),
+                subtitle: Text("fetching all hikes..."),
+              ),
             ],
           ),
           items: 1,
