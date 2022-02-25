@@ -105,7 +105,30 @@ class _HomePage extends State<HomePage> {
                   if (loading && hikes.isEmpty)
                     ...List.filled(5, 0).map((_) => const HikeCardSkeleton()),
                   if (hikes.isEmpty && error == null && !loading)
-                    const Center(child: Text('No hikes found')),
+                    Center(
+                        child: Column(
+                      children: const [
+                        Center(
+                          child: Text(
+                            'No Hikes',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 10),
+                        Center(
+                          child: Image(
+                            image: AssetImage('assets/images/no-results.png'),
+                            alignment: Alignment.center,
+                            repeat: ImageRepeat.noRepeat,
+                            height: 64,
+                          ),
+                        )
+                      ],
+                    )),
                   if (hikes.isNotEmpty)
                     ...hikes.map(
                       (hike) => HikeCard(
