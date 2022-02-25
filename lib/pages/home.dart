@@ -36,7 +36,8 @@ class _HomePage extends State<HomePage> {
       }
 
       setState(() {
-        this.hikes.addAll(hikes);
+        this.hikes.insertAll(0, hikes);
+        this.hikes.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         loading = false;
         hasFetchedHikes = true;
       });
