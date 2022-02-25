@@ -36,7 +36,7 @@ class _HomePage extends State<HomePage> {
       }
 
       setState(() {
-        this.hikes.insertAll(0, hikes);
+        this.hikes = hikes;
         this.hikes.sort((a, b) => b.createdAt.compareTo(a.createdAt));
         loading = false;
         hasFetchedHikes = true;
@@ -102,7 +102,7 @@ class _HomePage extends State<HomePage> {
                 [
                   const SizedBox(height: 10),
                   if (error != null) Center(child: Text(error!)),
-                  if (loading)
+                  if (loading && hikes.isEmpty)
                     ...List.filled(5, 0).map((_) => const HikeCardSkeleton()),
                   if (hikes.isEmpty && error == null && !loading)
                     const Center(child: Text('No hikes found')),
