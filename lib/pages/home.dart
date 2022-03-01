@@ -18,9 +18,7 @@ class _HomePage extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    setState(() {
-      loading = true;
-    });
+    fetchHikes();
   }
 
   Future<void> fetchHikes() async {
