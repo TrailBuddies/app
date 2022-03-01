@@ -61,29 +61,10 @@ class _HomePage extends State<HomePage> {
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              expandedHeight: 280.0,
+              expandedHeight: 200,
               backgroundColor: Colors.orange.shade900,
+              floating: true,
               flexibleSpace: FlexibleSpaceBar(
-                title: Container(
-                  height: 50,
-                  margin:
-                      const EdgeInsets.only(left: 10, right: 10, bottom: 110),
-                  alignment: Alignment.topCenter,
-                  child: const Text(
-                    'Trail Buddies',
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            blurRadius: 2,
-                            color: Colors.grey,
-                            offset: Offset(0, 3),
-                          ),
-                        ]),
-                  ),
-                ),
                 centerTitle: true,
                 background: Container(
                   decoration: const BoxDecoration(
