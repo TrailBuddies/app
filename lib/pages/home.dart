@@ -100,7 +100,7 @@ class _HomePage extends State<HomePage> {
                 [
                   const SizedBox(height: 10),
                   if (error != null) Center(child: Text(error!)),
-                  if (loading && hikes.isEmpty)
+                  if (loading && hikes.isEmpty && !hasFetchedHikes)
                     ...List.filled(5, 0).map((_) => const HikeCardSkeleton()),
                   if (hikes.isEmpty && error == null && !loading)
                     Center(
