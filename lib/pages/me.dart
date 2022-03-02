@@ -54,7 +54,20 @@ class MePage extends StatelessWidget {
                     'Logout',
                     style: TextStyle(color: Colors.white),
                   ),
-                  onPressed: () async {},
+                  onPressed: () async {
+                    final success =
+                        await Provider.of<User>(context, listen: false)
+                            .logout();
+                    if (success) {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, '/', (route) => false);
+                    } else {
+                      Fluttertoast.showToast(
+                        msg:
+                            'Failed to logout. Please report this incident to matievisthekat@gmail.com',
+                      );
+                    }
+                  },
                 ),
               ),
             ],
