@@ -109,13 +109,7 @@ class _CheckLogin extends State<CheckLogin> {
         } else if (snapshot.hasError) {
           Fluttertoast.showToast(
             msg:
-                "Somehow failed to validate token. Please report this incident to matievisthekat@gmail.com",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0,
+                'Failed to validate token. Please report this incident to matievisthekat@gmail.com',
           );
           FlutterError.presentError(FlutterErrorDetails(
             exception: snapshot.error ?? {},
