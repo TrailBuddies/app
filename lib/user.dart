@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import './declarations.dart';
 
 class User extends ChangeNotifier {
@@ -67,6 +68,26 @@ class User extends ChangeNotifier {
   void setAdmin(bool v) {
     admin = v;
     notifyListeners();
+  }
+
+  Future<bool> logout() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    final response = await post(
+      Uri.parse('$baseUrl/api/v1/users/logout'),
+      headers: {
+        'Authorization': 'Bearer ${prefs.get('token')}',
+        'Content-Type': 'application/json',
+      },
+    );
+    final json = jsonDecode(response.body);
+
+    if (response.statusCode == 200 && json['success'] == true) {
+      await prefs.remove('token');
+      return true;
+    } else {
+      return false;
+    }
   }
 
   static Future<User?> fetch(String identifier) async {
