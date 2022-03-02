@@ -10,6 +10,7 @@ import 'package:trail_buddies/user_changenotifier.dart';
 import './pages/landing.dart';
 import './pages/login.dart';
 import './pages/home.dart';
+import './pages/me.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,17 +21,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => ChangeNotifierProvider<CurrentUser>(
-              create: (_) => CurrentUser(),
-              child: const CheckLogin(),
-            ),
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(),
-      },
+    return ChangeNotifierProvider<CurrentUser>(
+      create: (_) => CurrentUser(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => const CheckLogin(),
+          '/login': (context) => const LoginPage(),
+          '/home': (context) => const HomePage(),
+          '/me': (context) => const MePage(),
+        },
+      ),
     );
   }
 }
