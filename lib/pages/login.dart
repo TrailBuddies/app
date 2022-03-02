@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trail_buddies/user_changenotifier.dart';
 import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
 
@@ -64,7 +66,15 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', json['auth']['token']);
-      await prefs.setString('username', json['user']['username']);
+
+      Provider.of<CurrentUser>(context).setAll(
+        newToken: json['auth']['token'],
+        newId: json['user']['id'],
+        newUsername: json['user']['username'],
+        newEmail: json['user']['email'],
+        newVerified: json['user']['verified'],
+        newAdmin: json['user']['admin'],
+      );
 
       Navigator.pushReplacementNamed(context, '/home');
     }
