@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', json['auth']['token']);
 
-      Provider.of<User>(context).setAll(
+      Provider.of<User>(context, listen: false).setAll(
         newToken: json['auth']['token'],
         newId: json['user']['id'],
         newUsername: json['user']['username'],
