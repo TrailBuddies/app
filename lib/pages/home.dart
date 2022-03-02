@@ -64,7 +64,13 @@ class _HomePage extends State<HomePage> {
               expandedHeight: 200,
               backgroundColor: Colors.orange.shade900,
               floating: true,
-              actions: [IconButton(onPressed: () {}, iconSize: 28, icon: const Icon(Icons.account_circle))],
+              actions: [
+                IconButton(
+                  onPressed: () => Navigator.pushNamed(context, '/me'),
+                  iconSize: 28,
+                  icon: const Icon(Icons.account_circle),
+                )
+              ],
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 background: Container(
