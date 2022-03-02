@@ -73,7 +73,7 @@ class User extends ChangeNotifier {
   Future<bool> logout() async {
     final prefs = await SharedPreferences.getInstance();
 
-    final response = await post(
+    final response = await delete(
       Uri.parse('$baseUrl/api/v1/users/logout'),
       headers: {
         'Authorization': 'Bearer ${prefs.get('token')}',
