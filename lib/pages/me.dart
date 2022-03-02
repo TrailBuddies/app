@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:trail_buddies/user_changenotifier.dart';
 import 'package:trail_buddies/widgets/common/custom_appbar.dart';
+
+import '../user.dart';
 
 class MePage extends StatelessWidget {
   const MePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<CurrentUser>(context);
+    final user = Provider.of<User>(context);
 
     return Scaffold(
       appBar: CustomAppBar(),
@@ -42,7 +43,20 @@ class MePage extends StatelessWidget {
                   );
                 },
                 child: Text(user.id),
-              )
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 100),
+                child: ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.red),
+                  ),
+                  child: const Text(
+                    'Logout',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  onPressed: () async {},
+                ),
+              ),
             ],
           ),
         ),

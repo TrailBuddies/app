@@ -3,9 +3,10 @@ import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trail_buddies/user_changenotifier.dart';
 import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
+
+import '../user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -67,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', json['auth']['token']);
 
-      Provider.of<CurrentUser>(context).setAll(
+      Provider.of<User>(context).setAll(
         newToken: json['auth']['token'],
         newId: json['user']['id'],
         newUsername: json['user']['username'],

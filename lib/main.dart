@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:trail_buddies/user_changenotifier.dart';
+import 'package:trail_buddies/user.dart';
 
 import './pages/landing.dart';
 import './pages/login.dart';
@@ -21,8 +21,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<CurrentUser>(
-      create: (_) => CurrentUser(),
+    return ChangeNotifierProvider<User>(
+      create: (_) => User(
+        id: '',
+        email: '',
+        username: '',
+        verified: 'pending',
+        admin: false,
+        updatedAt: '',
+        createdAt: '',
+      ),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
@@ -70,7 +78,7 @@ class _CheckLogin extends State<CheckLogin> {
         isLoggedIn = false;
       });
     } else {
-      final user = Provider.of<CurrentUser>(context, listen: false);
+      final user = Provider.of<User>(context, listen: false);
       user.setAll(
         newToken: token,
         newId: json['id'],
