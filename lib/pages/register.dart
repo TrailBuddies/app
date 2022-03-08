@@ -40,6 +40,7 @@ class _RegisterPageState extends State<RegisterPage> {
       },
       body: jsonEncode({
         'user': {
+          'username': username.text,
           'email': email.text,
           'password': password.text,
         }
