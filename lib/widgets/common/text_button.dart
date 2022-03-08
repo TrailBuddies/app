@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 
-class TextButton extends StatelessWidget {
+class CustomTextButton extends StatelessWidget {
   final String text;
   final void Function() onTap;
-  final Color textColour;
+  final Color? textColour;
+  final ButtonStyle? style;
 
-  const TextButton({
+  const CustomTextButton({
     Key? key,
     required this.text,
     required this.onTap,
-    this.textColour = Colors.blue,
+    this.textColour,
+    this.style,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      text: text,
-      onTap: onTap,
-      textColour: textColour,
+      onPressed: onTap,
+      style: style,
+      child: Text(
+        text,
+        style: TextStyle(color: textColour ?? Colors.blue.shade400),
+      ),
     );
   }
 }
