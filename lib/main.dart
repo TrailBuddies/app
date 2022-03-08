@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trail_buddies/pages/register.dart';
 import 'package:trail_buddies/user.dart';
 
 import './pages/landing.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         routes: {
           '/': (context) => const CheckLogin(),
           '/login': (context) => const LoginPage(),
+          '/register': (context) => const RegisterPage(),
           '/home': (context) => const HomePage(),
           '/me': (context) => const MePage(),
         },
