@@ -7,6 +7,7 @@ import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
 
 import '../user.dart';
+import '../widgets/common/text_button.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -23,9 +24,9 @@ class _RegisterPageState extends State<RegisterPage> {
   String error = "";
 
   void login(BuildContext context) async {
-    if (email.text.isEmpty || password.text.isEmpty) {
+    if (email.text.isEmpty || password.text.isEmpty || username.text.isEmpty) {
       return setState(() {
-        error = "Please enter your email and password";
+        error = "Please enter a username, email, and password";
       });
     }
 
@@ -101,6 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             TextInput(hintText: 'Username', controller: username),
+            const SizedBox(height: 16),
             TextInput(hintText: 'Email', controller: email),
             const SizedBox(height: 16),
             TextInput(
@@ -114,6 +116,10 @@ class _RegisterPageState extends State<RegisterPage> {
               backgroundColour: Colors.green.shade400,
               textColour: Colors.white,
               onTap: () => {login(context)},
+            ),
+            CustomTextButton(
+              text: "Already have an account? Log in here!",
+              onTap: () => Navigator.pushNamed(context, '/login'),
             ),
             const SizedBox(height: 16),
             Text(
