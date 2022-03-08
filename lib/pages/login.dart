@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:trail_buddies/widgets/common/button.dart';
+import 'package:trail_buddies/widgets/common/text_button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
 
 import '../user.dart';
@@ -111,6 +112,10 @@ class _LoginPageState extends State<LoginPage> {
               backgroundColour: Colors.green.shade400,
               textColour: Colors.white,
               onTap: () => {login(context)},
+            ),
+            CustomTextButton(
+              text: "Don't have an account? Register here!",
+              onTap: () => Navigator.pushNamed(context, '/register'),
             ),
             const SizedBox(height: 16),
             Text(
