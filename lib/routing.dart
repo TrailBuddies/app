@@ -28,3 +28,7 @@ Widget getPageWidget(String name) {
 
   return const CheckLogin();
 }
+
+MaterialPageRoute getPage(String name) {
+  return MaterialPageRoute(builder: (_) => getPageWidget(name));
+}
