@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../user.dart';
-import '../home.dart';
-import '../landing.dart';
+import 'home.dart';
+import 'landing.dart';
 import '../login.dart';
 
 class CheckLogin extends StatefulWidget {
