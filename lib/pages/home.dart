@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:trail_buddies/hike_event.dart';
 import 'package:trail_buddies/widgets/common/hike_card.dart';
 

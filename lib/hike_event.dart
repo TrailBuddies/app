@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+
 import 'package:trail_buddies/user.dart';
-import './declarations.dart';
+import 'package:trail_buddies/declarations.dart';
 
 class HikeEvent {
   late String id;

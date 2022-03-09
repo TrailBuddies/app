@@ -5,13 +5,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:trail_buddies/pages/register.dart';
 import 'package:trail_buddies/user.dart';
-
-import './pages/landing.dart';
-import './pages/login.dart';
-import './pages/home.dart';
-import './pages/me.dart';
+import 'package:trail_buddies/pages/landing.dart';
+import 'package:trail_buddies/pages/login.dart';
+import 'package:trail_buddies/pages/home.dart';
+import 'package:trail_buddies/pages/me.dart';
 
 void main() {
   runApp(const MyApp());
