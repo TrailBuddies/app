@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import './routing.dart';
-import './user.dart';
+import 'package:trail_buddies/routing.dart';
+import 'package:trail_buddies/user.dart';
+
 
 void main() {
   runApp(const MyApp());

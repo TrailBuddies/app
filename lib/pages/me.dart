@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
-import 'package:trail_buddies/widgets/common/custom_appbar.dart';
 
-import '../user.dart';
+import 'package:trail_buddies/widgets/common/custom_appbar.dart';
+import 'package:trail_buddies/user.dart';
 
 class MePage extends StatelessWidget {
   const MePage({Key? key}) : super(key: key);

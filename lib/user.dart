@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import './declarations.dart';
+
+import 'package:trail_buddies/declarations.dart';
 
 class User extends ChangeNotifier {
   late String id;

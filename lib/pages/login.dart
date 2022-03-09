@@ -1,13 +1,14 @@
 import 'dart:convert';
+
 import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
-
-import '../user.dart';
+import 'package:trail_buddies/user.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
