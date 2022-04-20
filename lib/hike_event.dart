@@ -52,7 +52,7 @@ class HikeEvent {
 
     final json = jsonDecode(response.body);
 
-    if (json['error']) {
+    if (json['error'] != null) {
       throw Exception(
           'Failed to fetch hike event $id. Response: ${json.toString()}');
     } else {
