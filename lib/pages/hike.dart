@@ -20,7 +20,6 @@ class _HikePageState extends State<HikePage> {
 
   void fetchHikeEvent() async {
     final hikeEvent = await HikeEvent.fetch(widget.id);
-    print(hikeEvent);
     setState(() {
       _hikeEvent = hikeEvent;
       loading = false;
@@ -29,7 +28,10 @@ class _HikePageState extends State<HikePage> {
 
   @override
   Widget build(BuildContext context) {
-    {if}
+    if (mounted) {
+      fetchHikeEvent();
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Hike'),
