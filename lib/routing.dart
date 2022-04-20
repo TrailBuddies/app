@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trail_buddies/pages/hike.dart';
 
 import './declarations.dart';
 import './pages/check_login/widget.dart';
@@ -23,7 +24,7 @@ Widget getPageWidget(String name) {
     final uri = Uri.parse(name);
     final uuid = uri.pathSegments.last;
 
-    // TODO: create hike page and return it here
+    return HikePage(id: uuid);
   }
 
   return const CheckLogin();
