@@ -33,6 +33,7 @@ class _HikeCardState extends State<HikeCard> {
     return Center(
       child: Card(
         child: InkWell(
+          onTap: widget.onTap,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [

@@ -126,7 +126,8 @@ class _HomePage extends State<HomePage> {
                         lng: hike.lng,
                         difficulty: hike.difficulty,
                         imageUrl: hike.imageUrl,
-                        onTap: () => {},
+                        onTap: () =>
+                            {Navigator.pushNamed(context, '/hike/${hike.id}')},
                       ),
                     ),
                 ],
