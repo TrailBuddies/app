@@ -28,7 +28,7 @@ class _HikePageState extends State<HikePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (mounted) {
+    if (mounted && _hikeEvent == null) {
       fetchHikeEvent();
     }
 
