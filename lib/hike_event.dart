@@ -15,7 +15,7 @@ class HikeEvent {
   late int difficulty;
   late DateTime createdAt;
   late DateTime updatedAt;
-  late String? imageUrl;
+  late String imageUrl;
   late String userId;
 
   HikeEvent({
