@@ -12,7 +12,7 @@ class User extends ChangeNotifier {
   late String email;
   late DateTime createdAt;
   late DateTime updatedAt;
-  late String verified;
+  late bool verified;
   late bool admin;
 
   User({
@@ -35,7 +35,7 @@ class User extends ChangeNotifier {
     required String newId,
     required String newUsername,
     required String newEmail,
-    required String newVerified,
+    required bool newVerified,
     required bool newAdmin,
   }) {
     id = newId;
@@ -61,7 +61,7 @@ class User extends ChangeNotifier {
     notifyListeners();
   }
 
-  void setVerified(String v) {
+  void setVerified(bool v) {
     verified = v;
     notifyListeners();
   }
