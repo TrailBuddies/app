@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:trail_buddies/hike_event.dart';
@@ -15,20 +16,20 @@ class HikePage extends StatefulWidget {
 }
 
 class _HikePageState extends State<HikePage> {
-  HikeEvent? _hikeEvent;
+  HikeEvent? hike;
   bool loading = true;
 
   void fetchHikeEvent() async {
     final hikeEvent = await HikeEvent.fetch(widget.id);
     setState(() {
-      _hikeEvent = hikeEvent;
+      hike = hikeEvent;
       loading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (mounted && _hikeEvent == null) {
+    if (mounted && hike == null) {
       fetchHikeEvent();
     }
 
@@ -40,15 +41,54 @@ class _HikePageState extends State<HikePage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : _hikeEvent == null
+          : hike == null
               ? const Center(
                   child: Text('No hike found'),
                 )
               : Column(
                   children: [
-                    Text(_hikeEvent!.title),
-                    Text(_hikeEvent!.description),
-                    Text('${_hikeEvent!.lat}, ${_hikeEvent!.lng}'),
+                    Image.network(
+                      hike!.imageUrl,
+                      fit: BoxFit.cover,
+                    ),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          ListTile(
+                            title: Text(hike!.title),
+                            subtitle: Text(hike!.description),
+                          ),
+                          ListTile(
+                            title: const Text('Duration'),
+                            subtitle: Text(
+                              hike!.duration
+                                  .map((d) => DateFormat.yMd().format(d))
+                                  .join('...'),
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('Latitude'),
+                            subtitle: Text(hike!.lat.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Longitude'),
+                            subtitle: Text(hike!.lng.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Difficulty'),
+                            subtitle: Text(hike!.difficulty.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Created at'),
+                            subtitle: Text(hike!.createdAt.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Updated at'),
+                            subtitle: Text(hike!.updatedAt.toString()),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
     );

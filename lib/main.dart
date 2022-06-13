@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         id: '',
         email: '',
         username: '',
-        verified: 'pending',
+        verified: false,
         admin: false,
         updatedAt: '',
         createdAt: '',
