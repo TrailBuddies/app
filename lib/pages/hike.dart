@@ -15,20 +15,20 @@ class HikePage extends StatefulWidget {
 }
 
 class _HikePageState extends State<HikePage> {
-  HikeEvent? _hikeEvent;
+  HikeEvent? hike;
   bool loading = true;
 
   void fetchHikeEvent() async {
     final hikeEvent = await HikeEvent.fetch(widget.id);
     setState(() {
-      _hikeEvent = hikeEvent;
+      hike = hikeEvent;
       loading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (mounted && _hikeEvent == null) {
+    if (mounted && hike == null) {
       fetchHikeEvent();
     }
 
@@ -40,16 +40,18 @@ class _HikePageState extends State<HikePage> {
           ? const Center(
               child: CircularProgressIndicator(),
             )
-          : _hikeEvent == null
+          : hike == null
               ? const Center(
                   child: Text('No hike found'),
                 )
-              : Column(
-                  children: [
-                    Text(_hikeEvent!.title),
-                    Text(_hikeEvent!.description),
-                    Text('${_hikeEvent!.lat}, ${_hikeEvent!.lng}'),
-                  ],
+              : Center(
+                  child: Column(
+                    children: [
+                      Text(hike!.title),
+                      Text(hike!.description),
+                      Text('${hike!.lat}, ${hike!.lng}'),
+                    ],
+                  ),
                 ),
     );
   }
