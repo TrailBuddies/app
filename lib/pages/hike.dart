@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:trail_buddies/hike_event.dart';
+import 'package:trail_buddies/duration.dart';
 
 class HikePage extends StatefulWidget {
   final String id;
@@ -57,9 +58,7 @@ class _HikePageState extends State<HikePage> {
                           ListTile(
                             title: const Text('Duration'),
                             subtitle: Text(
-                              hike!.duration
-                                  .map((d) => DateFormat.yMd().format(d))
-                                  .join('...'),
+                              '${hike!.duration.map((d) => DateFormat.yMd().format(d)).join('...')} (${formatHikeDuration(hike!.duration)})',
                             ),
                           ),
                           ListTile(
