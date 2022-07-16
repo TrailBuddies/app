@@ -55,10 +55,6 @@ class _HikePageState extends State<HikePage> {
                       child: ListView(
                         children: [
                           ListTile(
-                            title: Text(hike!.title),
-                            subtitle: Text(hike!.description),
-                          ),
-                          ListTile(
                             title: const Text('Duration'),
                             subtitle: Text(
                               hike!.duration
