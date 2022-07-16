@@ -63,14 +63,6 @@ class _HikePageState extends State<HikePage> {
                             ),
                           ),
                           ListTile(
-                            title: const Text('Latitude'),
-                            subtitle: Text(hike!.lat.toString()),
-                          ),
-                          ListTile(
-                            title: const Text('Longitude'),
-                            subtitle: Text(hike!.lng.toString()),
-                          ),
-                          ListTile(
                             title: const Text('Difficulty'),
                             subtitle: Text(hike!.difficulty.toString()),
                           ),
@@ -81,6 +73,14 @@ class _HikePageState extends State<HikePage> {
                           ListTile(
                             title: const Text('Updated at'),
                             subtitle: Text(hike!.updatedAt.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Start-point Latitude'),
+                            subtitle: Text(hike!.lat.toString()),
+                          ),
+                          ListTile(
+                            title: const Text('Start-point Longitude'),
+                            subtitle: Text(hike!.lng.toString()),
                           ),
                         ],
                       ),
