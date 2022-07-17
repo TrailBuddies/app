@@ -17,7 +17,7 @@ class HikeEvent {
   late DateTime updatedAt;
   late String imageUrl;
   late String userId;
-  late User user;
+  late User? user;
 
   HikeEvent({
     required this.id,
@@ -42,7 +42,13 @@ class HikeEvent {
   }
 
   Future<User?> getUser() async {
-    return await User.fetch(userId);
+    if (user != null) {
+      return user;
+    } else {
+      final fetchedUser = await User.fetch(userId);
+      user = fetchedUser;
+      return user;
+    }
   }
 
   static Future<HikeEvent?> fetch(String id) async {
