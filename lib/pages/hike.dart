@@ -82,11 +82,13 @@ class _HikePageState extends State<HikePage> {
                                     style: const TextStyle(color: Colors.black),
                                     children: [
                                       TextSpan(
-                                          text: hike!.userId,
-                                          style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 255, 60, 0),
-                                              fontWeight: FontWeight.w500)),
+                                        text: hike!.userId,
+                                        style: const TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 255, 60, 0),
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
