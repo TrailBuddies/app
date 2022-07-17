@@ -22,6 +22,7 @@ class _HikePageState extends State<HikePage> {
 
   Future<void> fetchHikeEvent() async {
     final hikeEvent = await HikeEvent.fetch(widget.id);
+    await hikeEvent?.getUser();
     setState(() {
       hike = hikeEvent;
       loading = false;
@@ -82,7 +83,7 @@ class _HikePageState extends State<HikePage> {
                                     style: const TextStyle(color: Colors.black),
                                     children: [
                                       TextSpan(
-                                        text: hike!.userId,
+                                        text: hike!.user?.username ?? 'unknown',
                                         style: const TextStyle(
                                           color:
                                               Color.fromARGB(255, 255, 60, 0),

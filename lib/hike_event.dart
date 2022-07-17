@@ -17,7 +17,7 @@ class HikeEvent {
   late DateTime updatedAt;
   late String imageUrl;
   late String userId;
-  late User? user;
+  User? user;
 
   HikeEvent({
     required this.id,
