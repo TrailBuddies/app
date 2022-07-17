@@ -17,6 +17,7 @@ class HikeEvent {
   late DateTime updatedAt;
   late String imageUrl;
   late String userId;
+  late User user;
 
   HikeEvent({
     required this.id,
@@ -38,6 +39,20 @@ class HikeEvent {
     this.difficulty = int.parse(difficulty);
     this.createdAt = DateTime.parse(createdAt);
     this.updatedAt = DateTime.parse(updatedAt);
+
+    User.fetch(userId).then((u) {
+      if (u != null) {
+        user = User(
+          id: u.id,
+          username: u.username,
+          email: u.email,
+          createdAt: u.createdAt.toIso8601String(),
+          updatedAt: u.updatedAt.toIso8601String(),
+          verified: u.verified,
+          admin: u.admin,
+        );
+      }
+    });
   }
 
   Future<User?> getUser() async {
