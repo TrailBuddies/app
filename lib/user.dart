@@ -9,25 +9,25 @@ import 'package:trail_buddies/declarations.dart';
 class User extends ChangeNotifier {
   late String id;
   late String username;
-  late String email;
+  late String? email;
   late DateTime createdAt;
   late DateTime updatedAt;
-  late bool verified;
-  late bool admin;
+  late bool? verified;
+  late bool? admin;
 
   User({
     required this.id,
     required this.username,
     required this.email,
-    required String createdAt,
-    required String updatedAt,
+    required String? createdAt,
+    required String? updatedAt,
     required this.verified,
     required this.admin,
   }) {
     this.createdAt =
-        createdAt.isNotEmpty ? DateTime.parse(createdAt) : DateTime.now();
+        createdAt != null && createdAt.isNotEmpty ? DateTime.parse(createdAt) : DateTime.now();
     this.updatedAt =
-        createdAt.isNotEmpty ? DateTime.parse(updatedAt) : DateTime.now();
+        updatedAt != null && updatedAt.isNotEmpty ? DateTime.parse(updatedAt) : DateTime.now();
   }
 
   void setAll({

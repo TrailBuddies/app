@@ -22,7 +22,7 @@ class MePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                user.email,
+                user.email ?? 'unknown',
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
