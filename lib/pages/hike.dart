@@ -94,37 +94,35 @@ class _HikePageState extends State<HikePage> {
                                 Text(hike!.description),
                               ],
                             )),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: const Text('Duration'),
-                                subtitle: Text(
-                                  '${hike!.duration.map((d) => DateFormat.yMd().format(d)).join('...')} (${formatHikeDuration(hike!.duration)})',
-                                ),
+                        Column(
+                          children: [
+                            ListTile(
+                              title: const Text('Duration'),
+                              subtitle: Text(
+                                '${hike!.duration.map((d) => DateFormat.yMd().format(d)).join('...')} (${formatHikeDuration(hike!.duration)})',
                               ),
-                              ListTile(
-                                title: const Text('Difficulty'),
-                                subtitle: Text(hike!.difficulty.toString()),
-                              ),
-                              ListTile(
-                                title: const Text('Created at'),
-                                subtitle: Text(hike!.createdAt.toString()),
-                              ),
-                              ListTile(
-                                title: const Text('Updated at'),
-                                subtitle: Text(hike!.updatedAt.toString()),
-                              ),
-                              ListTile(
-                                title: const Text('Start-point Latitude'),
-                                subtitle: Text(hike!.lat.toString()),
-                              ),
-                              ListTile(
-                                title: const Text('Start-point Longitude'),
-                                subtitle: Text(hike!.lng.toString()),
-                              ),
-                            ],
-                          ),
+                            ),
+                            ListTile(
+                              title: const Text('Difficulty'),
+                              subtitle: Text(hike!.difficulty.toString()),
+                            ),
+                            ListTile(
+                              title: const Text('Created at'),
+                              subtitle: Text(hike!.createdAt.toString()),
+                            ),
+                            ListTile(
+                              title: const Text('Updated at'),
+                              subtitle: Text(hike!.updatedAt.toString()),
+                            ),
+                            ListTile(
+                              title: const Text('Start-point Latitude'),
+                              subtitle: Text(hike!.lat.toString()),
+                            ),
+                            ListTile(
+                              title: const Text('Start-point Longitude'),
+                              subtitle: Text(hike!.lng.toString()),
+                            ),
+                          ],
                         ),
                       ],
                     ),
