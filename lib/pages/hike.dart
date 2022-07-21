@@ -1,5 +1,6 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
+import 'package:maps_launcher/maps_launcher.dart';
 
 import 'package:trail_buddies/hike_event.dart';
 import 'package:trail_buddies/duration.dart';
@@ -73,7 +74,10 @@ class _HikePageState extends State<HikePage> {
                               child: FloatingActionButton(
                                 child: const Icon(Icons.map_outlined),
                                 backgroundColor: Colors.amber,
-                                onPressed: () {},
+                                onPressed: () {
+                                  MapsLauncher.launchCoordinates(
+                                      hike!.lat, hike!.lng);
+                                },
                                 mini: true,
                               ),
                             )

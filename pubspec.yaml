@@ -37,6 +37,7 @@ dependencies:
   fluttertoast: '>=8.0.8 <9.0.0'
   skeleton_loader: ^2.0.0+4
   intl: ^0.17.0
+  maps_launcher: ^2.0.1
 
 dev_dependencies:
   flutter_test:
