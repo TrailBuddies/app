@@ -58,9 +58,26 @@ class _HikePageState extends State<HikePage> {
                   else
                     Column(
                       children: [
-                        Image.network(
-                          hike!.imageUrl,
-                          fit: BoxFit.cover,
+                        Stack(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.zero,
+                              child: Image.network(
+                                hike!.imageUrl,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            Positioned(
+                              right: 5,
+                              bottom: 5,
+                              child: FloatingActionButton(
+                                child: const Icon(Icons.map_outlined),
+                                backgroundColor: Colors.amber,
+                                onPressed: () {},
+                                mini: true,
+                              ),
+                            )
+                          ],
                         ),
                         Container(
                             padding: const EdgeInsets.all(16),
