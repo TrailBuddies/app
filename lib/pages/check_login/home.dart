@@ -29,10 +29,10 @@ class _HomePage extends State<HomePage> {
     });
     await Future.delayed(const Duration(milliseconds: 1000));
     HikeEvent.all().then((hikes) {
-      if (hasFetchedHikes) {
-        hikes.removeWhere(
-            (newHike) => this.hikes.any((hike) => hike.id == newHike.id));
-      }
+      // if (hasFetchedHikes) {
+      //   hikes.removeWhere(
+      //       (newHike) => this.hikes.any((hike) => hike.id == newHike.id));
+      // }
 
       setState(() {
         this.hikes = hikes;
