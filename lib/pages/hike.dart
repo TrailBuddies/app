@@ -4,6 +4,7 @@ import 'package:maps_launcher/maps_launcher.dart';
 
 import 'package:trail_buddies/hike_event.dart';
 import 'package:trail_buddies/duration.dart';
+import 'package:trail_buddies/widgets/common/custom_appbar.dart';
 
 class HikePage extends StatefulWidget {
   final String id;
@@ -37,7 +38,7 @@ class _HikePageState extends State<HikePage> {
     }
 
     return Scaffold(
-      appBar: AppBar(
+      appBar: CustomAppBar(
         title: const Text('Hike'),
       ),
       body: RefreshIndicator(
