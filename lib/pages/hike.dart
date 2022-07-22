@@ -63,9 +63,9 @@ class _HikePageState extends State<HikePage> {
                           children: [
                             Container(
                               padding: EdgeInsets.zero,
-                              child: Image.network(
-                                hike!.imageUrl,
-                                fit: BoxFit.cover,
+                              child: FadeInImage.assetNetwork(
+                                placeholder: 'assets/images/placeholder.png',
+                                image: hike!.imageUrl,
                               ),
                             ),
                             Positioned(

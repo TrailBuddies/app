@@ -41,8 +41,9 @@ class _HikeCardState extends State<HikeCard> {
                   ? const Image(
                       image: AssetImage('assets/images/placeholder.png'),
                     )
-                  : Image(
-                      image: NetworkImage(widget.imageUrl as String),
+                  : FadeInImage.assetNetwork(
+                      placeholder: 'assets/images/placeholder.png',
+                      image: widget.imageUrl as String,
                     ),
               ListTile(
                 title: Text(widget.title),
