@@ -54,8 +54,33 @@ class _UserPageState extends State<UserPage> {
                       child: Text('No user found'),
                     )
                   else
-                    const Center(
-                      child: Text('User page'),
+                    Container(
+                      margin: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            user!.username,
+                            style: Theme.of(context).textTheme.headline5,
+                          ),
+                          if (user!.verified == true)
+                            RichText(
+                              text: TextSpan(
+                                text: 'Verified ',
+                                style: Theme.of(context).textTheme.bodyText1,
+                                children: const [
+                                  WidgetSpan(
+                                    child: Image(
+                                      image: AssetImage(
+                                          'assets/images/verified-icon.png'),
+                                      height: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                        ],
+                      ),
                     )
                 ],
               ),
