@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:trail_buddies/user.dart';
-import 'package:trail_buddies/widgets/common/custom_appbar.dart';
+import 'package:trail_buddies/widgets/custom/custom_appbar.dart';
 
 class UserPage extends StatefulWidget {
   final String id;
@@ -54,8 +54,11 @@ class _UserPageState extends State<UserPage> {
                       child: Text('No user found'),
                     )
                   else
-                    const Center(
-                      child: Text('User page'),
+                    Container(
+                      margin: const EdgeInsets.all(16),
+                      child: Column(
+                        
+                      ),
                     )
                 ],
               ),
