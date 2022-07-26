@@ -79,6 +79,22 @@ class _UserPageState extends State<UserPage> {
                                 ],
                               ),
                             ),
+                          if (user!.admin == true)
+                            RichText(
+                              text: TextSpan(
+                                text: 'Admin ',
+                                style: Theme.of(context).textTheme.bodyText1,
+                                children: const [
+                                  WidgetSpan(
+                                    child: Image(
+                                      image: AssetImage(
+                                          'assets/images/admin-icon.png'),
+                                      height: 20,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
                     )
