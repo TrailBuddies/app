@@ -20,7 +20,7 @@ class _UserPageState extends State<UserPage> {
   bool loading = true;
 
   Future<void> fetchUser() async {
-    final user = await User.fetch(widget.id);
+    final user = await User.fetch(widget.id, true);
     setState(() {
       this.user = user;
       loading = false;

@@ -45,7 +45,7 @@ class HikeEvent {
     if (user != null) {
       return user;
     } else {
-      final fetchedUser = await User.fetch(userId);
+      final fetchedUser = await User.fetch(userId, true);
       user = fetchedUser;
       return user;
     }
