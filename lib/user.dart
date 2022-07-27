@@ -24,10 +24,12 @@ class User extends ChangeNotifier {
     required this.verified,
     required this.admin,
   }) {
-    this.createdAt =
-        createdAt != null && createdAt.isNotEmpty ? DateTime.parse(createdAt) : DateTime.now();
-    this.updatedAt =
-        updatedAt != null && updatedAt.isNotEmpty ? DateTime.parse(updatedAt) : DateTime.now();
+    this.createdAt = createdAt != null && createdAt.isNotEmpty
+        ? DateTime.parse(createdAt)
+        : DateTime.now();
+    this.updatedAt = updatedAt != null && updatedAt.isNotEmpty
+        ? DateTime.parse(updatedAt)
+        : DateTime.now();
   }
 
   void setAll({
@@ -91,12 +93,16 @@ class User extends ChangeNotifier {
     }
   }
 
-  static Future<User?> fetch(String identifier) async {
+  static Future<User?> fetch(String identifier, bool? authenticate) async {
+    final prefs = await SharedPreferences.getInstance();
+    Map<String, String> headers = {
+      if (authenticate == true) 'Authorization': 'Bearer ${prefs.get('token')}',
+      'Content-Type': 'application/json',
+    };
+
     final response = await get(
       Uri.parse('$baseUrl/api/v1/users/$identifier'),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: headers,
     );
     final json = jsonDecode(response.body);
 

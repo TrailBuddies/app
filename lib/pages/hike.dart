@@ -104,12 +104,20 @@ class _HikePageState extends State<HikePage> {
                                     text: 'by ',
                                     style: const TextStyle(color: Colors.black),
                                     children: [
-                                      TextSpan(
-                                        text: hike!.user?.username ?? 'unknown',
-                                        style: const TextStyle(
-                                          color:
-                                              Color.fromARGB(255, 255, 60, 0),
-                                          fontWeight: FontWeight.w500,
+                                      WidgetSpan(
+                                        child: InkWell(
+                                          onTap: () => {
+                                            Navigator.pushNamed(context,
+                                                '/user/${hike!.userId}')
+                                          },
+                                          child: Text(
+                                            hike!.user?.username ?? 'unknown',
+                                            style: const TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 255, 60, 0),
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ],
