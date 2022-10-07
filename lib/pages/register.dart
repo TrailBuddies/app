@@ -115,7 +115,6 @@ class _RegisterPageState extends State<RegisterPage> {
             Button(
               text: 'Register',
               backgroundColour: Colors.green.shade400,
-              textColour: Colors.white,
               onTap: () => {login(context)},
             ),
             CustomTextButton(
