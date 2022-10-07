@@ -29,7 +29,7 @@ class LandingPage extends StatelessWidget {
                       text: 'Lets Go!',
                       backgroundColour: const Color.fromRGBO(232, 73, 23, 1),
                       onTap: () =>
-                          Navigator.pushReplacementNamed(context, '/login'),
+                          Navigator.pushReplacementNamed(context, '/register'),
                     ),
                   ),
                 ],
