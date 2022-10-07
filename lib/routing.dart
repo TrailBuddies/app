@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:trail_buddies/pages/hike.dart';
 
-import './declarations.dart';
 import './pages/check_login/widget.dart';
 import './pages/login.dart';
 import './pages/me.dart';
 import './pages/register.dart';
+import './declarations.dart';
 
 Widget getPageWidget(String name) {
   if (name == '/login') {
