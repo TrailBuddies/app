@@ -164,7 +164,7 @@ class _LayoutState extends State<Layout> {
               CustomTextButton(
                 text: widget.customButtonText,
                 onTap: () =>
-                    Navigator.pushNamed(context, widget.customButtonPath),
+                    Navigator.pushReplacementNamed(context, widget.customButtonPath),
               ),
             ]),
           ),
