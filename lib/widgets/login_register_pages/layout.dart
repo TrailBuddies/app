@@ -17,12 +17,13 @@ class Layout extends StatefulWidget {
   final String customButtonText;
   final String customButtonPath;
   final String submitButtonText;
-  final void Function({
+  final Future<void> Function(
+    BuildContext context,
     String? username,
     String? email,
     String? password,
     void Function(String err) setError,
-  }) onSubmit;
+  ) onSubmit;
 
   const Layout({
     Key? key,
@@ -53,16 +54,22 @@ class _LayoutState extends State<Layout> {
   }
 
   void submit(BuildContext context) async {
-    Function onSubmit = widget.onSubmit;
+    Future<void> Function(
+      BuildContext context,
+      String? username,
+      String? email,
+      String? password,
+      void Function(String err) setError,
+    ) onSubmit = widget.onSubmit;
 
-    setState(() => {
-      error = ''
-    });
+    setState(() => {error = ''});
 
     onSubmit(
-      username: username.text,
-      email: email.text,
-      password: password.text,
+      context,
+      username.text,
+      email.text,
+      password.text,
+      setError,
     ).catchError((e) {
       setError("Unexpected error. Please report this incident");
       FlutterError.presentError(
@@ -162,7 +169,8 @@ class _LayoutState extends State<Layout> {
               ),
               CustomTextButton(
                 text: widget.customButtonText,
-                onTap: () => Navigator.pushNamed(context, widget.customButtonPath),
+                onTap: () =>
+                    Navigator.pushNamed(context, widget.customButtonPath),
               ),
             ]),
           ),
