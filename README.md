@@ -18,6 +18,8 @@
 
 ---
 
-<sub>
-  <a href="https://www.flaticon.com/free-icons/location" title="location icons">Location icons created by Freepik - Flaticon</a>
+<sub>   
+   
+  Some icons by iconmas from <a href="https://thenounproject.com/iconmas/" target="_blank" title="Home Icons">The Noun Project</a>
+  
 </sub>
