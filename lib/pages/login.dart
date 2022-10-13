@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
             newAdmin: json['user']['admin'],
           );
 
-          Navigator.pushReplacementNamed(context, '/home');
+          Navigator.pushReplacementNamed(context, '/');
         }
       },
     );

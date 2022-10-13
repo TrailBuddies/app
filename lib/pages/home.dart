@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:trail_buddies/pages/feed.dart';
-import 'package:trail_buddies/pages/check_login/widget.dart';
 import 'package:trail_buddies/pages/me.dart';
 
 class PageTab {
@@ -17,12 +16,10 @@ class PageTab {
 }
 
 class HomePage extends StatefulWidget {
-  final Widget child;
   final int? selectedPage;
 
   const HomePage({
     Key? key,
-    required this.child,
     this.selectedPage,
   }) : super(key: key);
 
