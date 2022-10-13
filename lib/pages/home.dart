@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:trail_buddies/pages/feed.dart';
 import 'package:trail_buddies/pages/check_login/widget.dart';
 import 'package:trail_buddies/pages/me.dart';
 
@@ -15,27 +16,27 @@ class PageTab {
   });
 }
 
-class Homepage extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final Widget child;
   final int? selectedPage;
 
-  const Homepage({
+  const HomePage({
     Key? key,
     required this.child,
     this.selectedPage,
   }) : super(key: key);
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomePageState extends State<HomePage> {
   int selected = 0;
   final List<PageTab> pages = [
     PageTab(
       icon: Ionicons.home_outline,
       iconActive: Ionicons.home,
-      widget: const CheckLogin(),
+      widget: const FeedPage(),
     ),
     PageTab(
       icon: Ionicons.person_outline,
