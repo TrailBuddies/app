@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Button extends StatelessWidget {
   final String text;
   final void Function() onTap;
-  final Color textColour;
+  final TextStyle textStyle;
   final Color backgroundColour;
   final double width;
   final double height;
@@ -12,7 +12,14 @@ class Button extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onTap,
-    this.textColour = Colors.white,
+    this.textStyle = const TextStyle(
+      color: Colors.white,
+      fontFamily: 'Poiret One',
+      fontSize: 24,
+      letterSpacing: 0,
+      fontWeight: FontWeight.bold,
+      height: 1,
+    ),
     this.backgroundColour = Colors.grey,
     this.width = 136,
     this.height = 46,
@@ -30,8 +37,8 @@ class Button extends StatelessWidget {
         ),
         foregroundColor: MaterialStateProperty.resolveWith<Color?>(
           (states) => (states.contains(MaterialState.pressed)
-              ? textColour.withOpacity(0.5)
-              : textColour),
+              ? textStyle.color?.withOpacity(0.5)
+              : textStyle.color),
         ),
         alignment: Alignment.center,
         shape: MaterialStateProperty.all<OutlinedBorder>(
@@ -44,14 +51,7 @@ class Button extends StatelessWidget {
         text,
         textAlign: TextAlign.center,
         textDirection: TextDirection.ltr,
-        style: TextStyle(
-          color: textColour,
-          fontFamily: 'Poiret One',
-          fontSize: 24,
-          letterSpacing: 0,
-          fontWeight: FontWeight.bold,
-          height: 1,
-        ),
+        style: textStyle,
       ),
     );
   }

@@ -111,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
             Button(
               text: 'Login',
               backgroundColour: Colors.green.shade400,
-              textColour: Colors.white,
               onTap: () => {login(context)},
             ),
             CustomTextButton(

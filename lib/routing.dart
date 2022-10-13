@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:trail_buddies/pages/hike.dart';
 
-import './declarations.dart';
 import './pages/check_login/widget.dart';
 import './pages/login.dart';
 import './pages/me.dart';
 import './pages/register.dart';
+import './pages/user.dart';
+import './declarations.dart';
 
 Widget getPageWidget(String name) {
   if (name == '/login') {
@@ -25,6 +26,13 @@ Widget getPageWidget(String name) {
     final uuid = uri.pathSegments.last;
 
     return HikePage(id: uuid);
+  }
+
+  if (RegExp('^/user/$uuidRegex').hasMatch(name)) {
+    final uri = Uri.parse(name);
+    final uuid = uri.pathSegments.last;
+
+    return UserPage(id: uuid);
   }
 
   return const CheckLogin();

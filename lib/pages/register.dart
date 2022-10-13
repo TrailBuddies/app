@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:trail_buddies/widgets/common/background_image.dart';
 
 import 'package:trail_buddies/widgets/common/button.dart';
 import 'package:trail_buddies/widgets/common/text_input.dart';
@@ -23,12 +25,18 @@ class _RegisterPageState extends State<RegisterPage> {
   final password = TextEditingController();
 
   String error = "";
+  late FToast toasts;
+
+  @override
+  void initState() {
+    super.initState();
+    toasts = FToast();
+    toasts.init(context);
+  }
 
   void login(BuildContext context) async {
     if (email.text.isEmpty || password.text.isEmpty || username.text.isEmpty) {
-      return setState(() {
-        error = "Please enter a username, email, and password";
-      });
+      return setError("Please enter a username, email, and password");
     }
 
     setState(() {
@@ -65,9 +73,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
     if (error.isNotEmpty) return;
     if (response.statusCode != 200) {
-      return setState(() {
-        error = json['error'];
-      });
+      setError(json['error']);
     } else {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('token', json['auth']['token']);
@@ -85,6 +91,52 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
+  void setError(String err) {
+    setState(() {
+      error = err;
+    });
+    showErrorToast(err);
+  }
+
+  void showErrorToast(String err) {
+    Widget toast = Container(
+        padding:
+            const EdgeInsets.only(top: 5.0, bottom: 5.0, right: 8.0, left: 0.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          color: Colors.redAccent,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade800,
+              blurRadius: 4.0,
+              spreadRadius: 1.0,
+              offset: const Offset(2.0, 3.0),
+            ),
+          ],
+        ),
+        child: Expanded(
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                padding: const EdgeInsets.all(0.0),
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  toasts.removeCustomToast();
+                },
+              ),
+              Text(err),
+            ],
+          ),
+        ));
+
+    toasts.showToast(
+      child: toast,
+      gravity: ToastGravity.TOP,
+      toastDuration: const Duration(seconds: 4),
+    );
+  }
+
   @override
   void dispose() {
     email.dispose();
@@ -95,45 +147,35 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: const EdgeInsets.all(32),
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(232, 73, 23, 1),
-        ),
-        child: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            TextInput(hintText: 'Username', controller: username),
-            const SizedBox(height: 16),
-            TextInput(hintText: 'Email', controller: email),
-            const SizedBox(height: 16),
-            TextInput(
-              hintText: 'Password',
-              obscureText: true,
-              controller: password,
-            ),
-            const SizedBox(height: 30),
-            Button(
-              text: 'Register',
-              backgroundColour: Colors.green.shade400,
-              textColour: Colors.white,
-              onTap: () => {login(context)},
-            ),
-            CustomTextButton(
-              text: "Already have an account? Log in here!",
-              onTap: () => Navigator.pushNamed(context, '/login'),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              error,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
+      body: BackgroundImage(children: [
+        Container(
+          padding: const EdgeInsets.only(left: 16, right: 16),
+          child: Center(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              TextInput(hintText: 'Username', controller: username),
+              const SizedBox(height: 16),
+              TextInput(hintText: 'Email', controller: email),
+              const SizedBox(height: 16),
+              TextInput(
+                hintText: 'Password',
+                obscureText: true,
+                controller: password,
               ),
-            ),
-          ]),
+              const SizedBox(height: 30),
+              Button(
+                text: 'Register',
+                backgroundColour: Colors.green.shade400,
+                onTap: () => {login(context)},
+              ),
+              CustomTextButton(
+                text: "Already have an account? Log in here!",
+                onTap: () => Navigator.pushNamed(context, '/login'),
+              ),
+            ]),
+          ),
         ),
-      ),
+      ]),
     );
   }
 }

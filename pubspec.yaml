@@ -66,6 +66,9 @@ flutter:
     - assets/images/background.png
     - assets/images/placeholder.png
     - assets/images/no-results.png
+    - assets/images/verified-icon.png
+    - assets/images/admin-icon.png
+    - assets/images/default-avatar.png
 
     # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -40,9 +40,11 @@ class _CheckLogin extends State<CheckLogin> {
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
     if (response.statusCode != 200) {
-      setState(() {
-        isLoggedIn = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoggedIn = false;
+        });
+      }
     } else {
       final user = Provider.of<User>(context, listen: false);
       user.setAll(
