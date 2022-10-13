@@ -2,17 +2,15 @@ import 'package:flutter/material.dart';
 
 import 'package:trail_buddies/hike_event.dart';
 import 'package:trail_buddies/widgets/common/hike_card.dart';
-// TEMP
-import '../global_layout.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class FeedPage extends StatefulWidget {
+  const FeedPage({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _HomePage();
+  State<StatefulWidget> createState() => _FeedPage();
 }
 
-class _HomePage extends State<HomePage> {
+class _FeedPage extends State<FeedPage> {
   List<HikeEvent> hikes = [];
   bool hasFetchedHikes = false;
   bool loading = false;
@@ -59,28 +57,26 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return GlobalLayout(
-      child: RefreshIndicator(
-        onRefresh: fetchHikes,
-        child: Column(
-          children: [
-            if (hikes.isNotEmpty)
-              ...hikes.map(
-                (h) => HikeCard(
-                  title: h.title,
-                  description: h.description,
-                  duration: h.duration,
-                  lat: h.lat,
-                  lng: h.lng,
-                  difficulty: h.difficulty,
-                  imageUrl: h.imageUrl,
-                  onTap: () {
-                    Navigator.pushNamed(context, '/hike/${h.id}');
-                  },
-                ),
-              )
-          ],
-        ),
+    return RefreshIndicator(
+      onRefresh: fetchHikes,
+      child: Column(
+        children: [
+          if (hikes.isNotEmpty)
+            ...hikes.map(
+              (h) => HikeCard(
+                title: h.title,
+                description: h.description,
+                duration: h.duration,
+                lat: h.lat,
+                lng: h.lng,
+                difficulty: h.difficulty,
+                imageUrl: h.imageUrl,
+                onTap: () {
+                  Navigator.pushNamed(context, '/hike/${h.id}');
+                },
+              ),
+            ),
+        ],
       ),
     );
   }
