@@ -1,38 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:decorated_icon/decorated_icon.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:trail_buddies/pages/check_login/widget.dart';
+import 'package:trail_buddies/pages/me.dart';
 
 class PageTab {
   IoniconsData icon;
   IoniconsData iconActive;
+  Widget widget;
 
   PageTab({
     required this.icon,
     required this.iconActive,
+    required this.widget,
   });
 }
 
-class GlobalLayout extends StatefulWidget {
+class Homepage extends StatefulWidget {
   final Widget child;
+  final int? selectedPage;
 
-  const GlobalLayout({
+  const Homepage({
     Key? key,
     required this.child,
+    this.selectedPage,
   }) : super(key: key);
 
   @override
-  State<GlobalLayout> createState() => _GlobalLayoutState();
+  State<Homepage> createState() => _HomepageState();
 }
 
-class _GlobalLayoutState extends State<GlobalLayout> {
+class _HomepageState extends State<Homepage> {
   int selected = 0;
-
   final List<PageTab> pages = [
-    PageTab(icon: Ionicons.home_outline, iconActive: Ionicons.home),
-    PageTab(icon: Ionicons.person_outline, iconActive: Ionicons.person),
-    PageTab(icon: Ionicons.pin_outline, iconActive: Ionicons.pin),
-    PageTab(icon: Ionicons.chatbox_outline, iconActive: Ionicons.chatbox),
+    PageTab(
+      icon: Ionicons.home_outline,
+      iconActive: Ionicons.home,
+      widget: const CheckLogin(),
+    ),
+    PageTab(
+      icon: Ionicons.person_outline,
+      iconActive: Ionicons.person,
+      widget: const MePage(),
+    ),
+    PageTab(
+      icon: Ionicons.pin_outline,
+      iconActive: Ionicons.pin,
+      widget: const Text("saved hikes"),
+    ),
+    PageTab(
+      icon: Ionicons.chatbox_outline,
+      iconActive: Ionicons.chatbox,
+      widget: const Text("messages"),
+    ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    selected = widget.selectedPage ?? 0;
+  }
 
   void onPagePressed(int i) {
     setState(() {
@@ -46,6 +72,7 @@ class _GlobalLayoutState extends State<GlobalLayout> {
       backgroundColor: const Color.fromARGB(255, 255, 251, 226),
       body: Stack(
         children: [
+          pages[selected].widget,
           Positioned(
             bottom: 0,
             left: 0,
@@ -92,7 +119,6 @@ class _GlobalLayoutState extends State<GlobalLayout> {
               ),
             ),
           ),
-          // widget.child,
         ],
       ),
     );
