@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:trail_buddies/hike_event.dart';
 import 'package:trail_buddies/widgets/common/hike_card.dart';
+// TEMP
+import '../global_layout.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class _HomePage extends State<HomePage> {
   List<HikeEvent> hikes = [];
   bool hasFetchedHikes = false;
   bool loading = false;
+  int index = 0;
   String? error;
 
   @override
@@ -56,83 +59,26 @@ class _HomePage extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: RefreshIndicator(
+    return GlobalLayout(
+      child: RefreshIndicator(
         onRefresh: fetchHikes,
-        child: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              expandedHeight: 200,
-              backgroundColor: Colors.orange.shade900,
-              floating: true,
-              actions: [
-                IconButton(
-                  onPressed: () => Navigator.pushNamed(context, '/me'),
-                  iconSize: 28,
-                  icon: const Icon(Icons.account_circle),
-                )
-              ],
-              flexibleSpace: FlexibleSpaceBar(
-                centerTitle: true,
-                background: Container(
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage('assets/images/background.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+        child: Column(
+          children: [
+            if (hikes.isNotEmpty)
+              ...hikes.map(
+                (h) => HikeCard(
+                  title: h.title,
+                  description: h.description,
+                  duration: h.duration,
+                  lat: h.lat,
+                  lng: h.lng,
+                  difficulty: h.difficulty,
+                  imageUrl: h.imageUrl,
+                  onTap: () {
+                    Navigator.pushNamed(context, '/hike/${h.id}');
+                  },
                 ),
-              ),
-            ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  const SizedBox(height: 10),
-                  if (error != null) Center(child: Text(error!)),
-                  if (loading && hikes.isEmpty && !hasFetchedHikes)
-                    ...List.filled(5, 0).map((_) => const HikeCardSkeleton()),
-                  if (hikes.isEmpty && error == null && !loading)
-                    Center(
-                        child: Column(
-                      children: const [
-                        Center(
-                          child: Text(
-                            'No Hikes',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Center(
-                          child: Image(
-                            image: AssetImage('assets/images/no-results.png'),
-                            alignment: Alignment.center,
-                            repeat: ImageRepeat.noRepeat,
-                            height: 64,
-                          ),
-                        )
-                      ],
-                    )),
-                  if (hikes.isNotEmpty)
-                    ...hikes.map(
-                      (hike) => HikeCard(
-                        title: hike.title,
-                        description: hike.description,
-                        duration: hike.duration,
-                        lat: hike.lat,
-                        lng: hike.lng,
-                        difficulty: hike.difficulty,
-                        imageUrl: hike.imageUrl,
-                        onTap: () =>
-                            {Navigator.pushNamed(context, '/hike/${hike.id}')},
-                      ),
-                    ),
-                ],
-              ),
-            )
+              )
           ],
         ),
       ),
