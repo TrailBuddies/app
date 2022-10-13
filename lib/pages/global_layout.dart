@@ -2,6 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:decorated_icon/decorated_icon.dart';
 import 'package:ionicons/ionicons.dart';
 
+class PageTab {
+  IoniconsData icon;
+  IoniconsData iconActive;
+
+  PageTab({
+    required this.icon,
+    required this.iconActive,
+  });
+}
+
 class GlobalLayout extends StatefulWidget {
   final Widget child;
 
@@ -16,6 +26,13 @@ class GlobalLayout extends StatefulWidget {
 
 class _GlobalLayoutState extends State<GlobalLayout> {
   int selected = 0;
+
+  final List<PageTab> pages = [
+    PageTab(icon: Ionicons.home_outline, iconActive: Ionicons.home),
+    PageTab(icon: Ionicons.person_outline, iconActive: Ionicons.person),
+    PageTab(icon: Ionicons.pin_outline, iconActive: Ionicons.pin),
+    PageTab(icon: Ionicons.chatbox_outline, iconActive: Ionicons.chatbox),
+  ];
 
   void onPagePressed(int i) {
     setState(() {
@@ -35,9 +52,9 @@ class _GlobalLayoutState extends State<GlobalLayout> {
             right: 0,
             height: 50,
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 87, 122, 59),
-                boxShadow: [
+              decoration: BoxDecoration(
+                color: Colors.grey.shade500,
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black45,
                     offset: Offset(0, -3),
@@ -48,36 +65,29 @@ class _GlobalLayoutState extends State<GlobalLayout> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  IconButton(
-                    icon: DecoratedIcon(
-                      selected == 0 ? Ionicons.home : Ionicons.home_outline,
-                      size: 30,
-                    ),
-                    onPressed: () => onPagePressed(0),
-                  ),
-                  IconButton(
-                    icon: DecoratedIcon(
-                      selected == 1 ? Ionicons.person : Ionicons.person_outline,
-                      size: 30,
-                    ),
-                    onPressed: () => onPagePressed(1),
-                  ),
-                  IconButton(
-                    icon: DecoratedIcon(
-                      selected == 2 ? Ionicons.folder : Ionicons.folder_outline,
-                      size: 30,
-                    ),
-                    onPressed: () => onPagePressed(2),
-                  ),
-                  IconButton(
-                    icon: DecoratedIcon(
-                      selected == 3
-                          ? Ionicons.chatbox
-                          : Ionicons.chatbox_outline,
-                      size: 30,
-                    ),
-                    onPressed: () => onPagePressed(3),
-                  ),
+                  ...pages.map((p) {
+                    int i = pages.indexOf(p);
+                    return InkWell(
+                      onTap: () => onPagePressed(i),
+                      child: SizedBox(
+                        height: 50,
+                        width: 95,
+                        child: Container(
+                          decoration: BoxDecoration(boxShadow: [
+                            BoxShadow(
+                              color: const Color.fromARGB(255, 255, 245, 180),
+                              blurRadius: 2,
+                              spreadRadius: selected == i ? 1 : 2,
+                            ),
+                          ]),
+                          child: Icon(
+                            selected == i ? p.iconActive : p.icon,
+                            size: 30,
+                          ),
+                        ),
+                      ),
+                    );
+                  })
                 ],
               ),
             ),
