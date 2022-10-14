@@ -54,8 +54,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
     selected = widget.selectedPage ?? 0;
+    super.initState();
   }
 
   void onPagePressed(int i) {
@@ -67,58 +67,48 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 251, 226),
-      body: Stack(
-        children: [
-          pages[selected].widget,
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 50,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.grey.shade500,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.black45,
-                    offset: Offset(0, -3),
-                    blurRadius: 5,
-                  )
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ...pages.map((p) {
-                    int i = pages.indexOf(p);
-                    return InkWell(
-                      onTap: () => onPagePressed(i),
-                      child: SizedBox(
-                        height: 50,
-                        width: 95,
-                        child: Container(
-                          decoration: BoxDecoration(boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromARGB(255, 255, 245, 180),
-                              blurRadius: 2,
-                              spreadRadius: selected == i ? 1 : 2,
-                            ),
-                          ]),
-                          child: Icon(
-                            selected == i ? p.iconActive : p.icon,
-                            size: 30,
-                          ),
-                        ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          color: Colors.grey.shade500,
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black45,
+              offset: Offset(0, -3),
+              blurRadius: 5,
+            )
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ...pages.map((p) {
+              int i = pages.indexOf(p);
+              return InkWell(
+                onTap: () => onPagePressed(i),
+                child: SizedBox(
+                  height: 50,
+                  width: 95,
+                  child: Container(
+                    decoration: BoxDecoration(boxShadow: [
+                      BoxShadow(
+                        color: const Color.fromARGB(255, 255, 245, 180),
+                        blurRadius: 2,
+                        spreadRadius: selected == i ? 1 : 2,
                       ),
-                    );
-                  })
-                ],
-              ),
-            ),
-          ),
-        ],
+                    ]),
+                    child: Icon(
+                      selected == i ? p.iconActive : p.icon,
+                      size: 30,
+                    ),
+                  ),
+                ),
+              );
+            })
+          ],
+        ),
       ),
+      backgroundColor: const Color.fromARGB(255, 255, 251, 226),
+      body: pages[selected].widget,
     );
   }
 }
