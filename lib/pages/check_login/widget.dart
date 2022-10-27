@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../user.dart';
-import 'home.dart';
-import 'landing.dart';
+import '../feed.dart';
+import '../landing.dart';
 import '../login.dart';
 
 class CheckLogin extends StatefulWidget {
@@ -40,9 +40,11 @@ class _CheckLogin extends State<CheckLogin> {
     var json = jsonDecode(response.body) as Map<String, dynamic>;
 
     if (response.statusCode != 200) {
-      setState(() {
-        isLoggedIn = false;
-      });
+      if (mounted) {
+        setState(() {
+          isLoggedIn = false;
+        });
+      }
     } else {
       final user = Provider.of<User>(context, listen: false);
       user.setAll(
@@ -71,11 +73,10 @@ class _CheckLogin extends State<CheckLogin> {
       future: checkIfLoggedIn(),
       builder: (context, AsyncSnapshot<bool> snapshot) {
         if (snapshot.hasData) {
-          return snapshot.data == true ? const HomePage() : const LandingPage();
+          return snapshot.data == true ? const FeedPage() : const LandingPage();
         } else if (snapshot.hasError) {
           Fluttertoast.showToast(
-            msg:
-                'Failed to validate token. Please report this incident to matievisthekat@gmail.com',
+            msg: 'Failed to login with stored credentials',
           );
           FlutterError.presentError(FlutterErrorDetails(
             exception: snapshot.error ?? {},

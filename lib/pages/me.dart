@@ -13,65 +13,61 @@ class MePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
 
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Container(
-        margin: const EdgeInsets.only(top: 40),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                user.email ?? 'unknown',
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+    return Container(
+      margin: const EdgeInsets.only(top: 40),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              user.email ?? 'unknown',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
-              TextButton(
+            ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.black),
+              ),
+              onPressed: () async {
+                await Clipboard.setData(ClipboardData(text: user.id));
+                Fluttertoast.showToast(
+                  msg: "Copied your user id to clipboard",
+                  toastLength: Toast.LENGTH_SHORT,
+                  gravity: ToastGravity.CENTER,
+                  timeInSecForIosWeb: 1,
+                  fontSize: 16.0,
+                );
+              },
+              child: Text(user.id),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 100),
+              child: ElevatedButton(
                 style: ButtonStyle(
-                  foregroundColor: MaterialStateProperty.all(Colors.black),
+                  backgroundColor: MaterialStateProperty.all(Colors.red),
+                ),
+                child: const Text(
+                  'Logout',
+                  style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
-                  await Clipboard.setData(ClipboardData(text: user.id));
-                  Fluttertoast.showToast(
-                    msg: "Copied your user id to clipboard",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    fontSize: 16.0,
-                  );
+                  final success =
+                      await Provider.of<User>(context, listen: false).logout();
+                  if (success) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/', (route) => false);
+                  } else {
+                    Fluttertoast.showToast(
+                      msg:
+                          'Failed to logout. Please report this incident to matievisthekat@gmail.com',
+                    );
+                  }
                 },
-                child: Text(user.id),
               ),
-              Container(
-                margin: const EdgeInsets.only(top: 100),
-                child: ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.red),
-                  ),
-                  child: const Text(
-                    'Logout',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  onPressed: () async {
-                    final success =
-                        await Provider.of<User>(context, listen: false)
-                            .logout();
-                    if (success) {
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, '/', (route) => false);
-                    } else {
-                      Fluttertoast.showToast(
-                        msg:
-                            'Failed to logout. Please report this incident to matievisthekat@gmail.com',
-                      );
-                    }
-                  },
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

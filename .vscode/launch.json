@@ -1,0 +1,12 @@
+{
+	"configurations": [
+		{
+			"name": "Flutter",
+			"program": "lib/main.dart",
+			"request": "launch",
+			"type": "dart",
+			"flutterMode": "debug",
+			"deviceId": "Pixel_2_API_32"
+		}
+	]
+}
